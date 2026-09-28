@@ -1,0 +1,13 @@
+# FixedRider
+
+FixedRider provides Safari Intelligence and fixed-price private transfer discovery in Zanzibar.
+
+## Zanzibar transfers
+- 35 pricing zones.
+- Each pair of zones has one canonical route in both directions.
+- Hotels and addresses resolve to a pricing zone.
+- A locked FixedRider zone fare takes priority.
+- Published market benchmarks are informational and are not presented as FixedRider fares.
+- Exact micro-locations can be handled by the fare engine when no locked pair exists.
+
+Canonical route directory: https://fixedrider.com/sitemap.xml
