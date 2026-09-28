@@ -1,0 +1,1 @@
+import {NextResponse} from "next/server";import {getRates} from "../../../lib/currency";export const revalidate=86400;export async function GET(){const rates=await getRates();return NextResponse.json({base:"USD",rates,note:"USD FixedRider fares are authoritative. EUR/TZS are indicative conversions."})}
