@@ -36,3 +36,11 @@ export function canonicalPair(a:string,b:string):[string,string]{const ai=zanzib
 export function fareFor(a:string,b:string){const[x,y]=canonicalPair(a,b);return lockedFares.find(f=>{const[fx,fy]=canonicalPair(f.from,f.to);return fx===x&&fy===y})}
 export function routeSlug(a:string,b:string){const[x,y]=canonicalPair(a,b);return `${x}-to-${y}`}
 export function uniqueRoutePairs(){return zanzibarZones.flatMap((a,i)=>zanzibarZones.slice(i+1).map(b=>[a,b] as const))}
+
+export const seoPairSlugs=new Set([
+"airport-to-stone-town","airport-to-nungwi","airport-to-kendwa","airport-to-matemwe","airport-to-kiwengwa","airport-to-paje","airport-to-jambiani","airport-to-kizimkazi",
+"stone-town-to-nungwi","stone-town-to-kendwa","stone-town-to-matemwe","stone-town-to-kiwengwa","stone-town-to-paje","stone-town-to-jambiani",
+"nungwi-to-paje","nungwi-to-jambiani","nungwi-to-matemwe","kendwa-to-paje","kendwa-to-jambiani","paje-to-michamvi"
+]);
+export function isSeoPair(a:string,b:string){return seoPairSlugs.has(routeSlug(a,b))}
+export const destinationHubSlugs=["airport","stone-town","nungwi","kendwa","paje","jambiani","matemwe","kiwengwa"] as const;
