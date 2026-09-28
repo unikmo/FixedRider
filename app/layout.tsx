@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
-import "./globals.css";
-export const metadata: Metadata = {title:"FixedRider | Zanzibar fixed-price transfers",description:"Know your fare before you go. Clear fixed-price transfers with verified local drivers in Zanzibar."};
+import type {Metadata} from "next";import "./globals.css";
+export const metadata:Metadata={metadataBase:new URL("https://fixedrider.com"),title:{default:"FixedRider | Safari Intelligence & Zanzibar Transfers",template:"%s | FixedRider"},description:"Safari intelligence first. Fixed-price private transfers across Zanzibar with hotel-to-hotel search and canonical zone pricing.",alternates:{canonical:"/"},robots:{index:true,follow:true},openGraph:{siteName:"FixedRider",type:"website",url:"https://fixedrider.com",title:"FixedRider | Safari Intelligence & Zanzibar Transfers",description:"Live safari intelligence and clear Zanzibar private transfer pricing."}};
 export default function RootLayout({children}:{children:React.ReactNode}){return <html lang="en"><body>{children}</body></html>}
