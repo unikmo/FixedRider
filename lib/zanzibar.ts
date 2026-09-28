@@ -11,5 +11,7 @@ export const lockedFares:LockedFare[]=[
 ];
 export function zoneBySlug(slug:string){return zanzibarZones.find(z=>z.slug===slug)}
 export function resolveZone(input:string){const q=input.trim().toLowerCase();return zanzibarZones.find(z=>z.name.toLowerCase()===q||z.aliases.some(a=>q.includes(a)))}
-export function fareFor(a:string,b:string){return lockedFares.find(f=>(f.from===a&&f.to===b)||(f.from===b&&f.to===a))}
-export function routeSlug(a:string,b:string){return `${a}-to-${b}`}
+export function canonicalPair(a:string,b:string):[string,string]{const ai=zanzibarZones.findIndex(z=>z.slug===a),bi=zanzibarZones.findIndex(z=>z.slug===b);return ai<=bi?[a,b]:[b,a]}
+export function fareFor(a:string,b:string){const[x,y]=canonicalPair(a,b);return lockedFares.find(f=>{const[fx,fy]=canonicalPair(f.from,f.to);return fx===x&&fy===y})}
+export function routeSlug(a:string,b:string){const[x,y]=canonicalPair(a,b);return `${x}-to-${y}`}
+export function uniqueRoutePairs(){return zanzibarZones.flatMap((a,i)=>zanzibarZones.slice(i+1).map(b=>[a,b] as const))}
