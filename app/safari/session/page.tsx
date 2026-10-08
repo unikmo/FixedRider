@@ -1,1 +1,8 @@
-import ParkSession from "./ParkSession";export default function Page(){return <div className="safariPilotPage"><nav><a href="/safari/pilot">Park Intelligence</a><a href="/">FixedRider</a></nav><header><small>GUIDE INTELLIGENCE</small><h1>Find what your guests came to see.</h1><p>Select the animals. Park Intelligence surfaces reported locations. You decide where and how to drive.</p></header><ParkSession/></div>}
+import ParkSession from "./ParkSession";
+export default function Page(){
+ return <div className="safariPilotPage">
+  <nav aria-label="Safari Intelligence"><a href="/safari">Safari Intelligence</a><a href="/safari/pilot">Report a sighting</a></nav>
+  <header><small>GUIDE-OPERATED WILDLIFE INTELLIGENCE</small><h1>Find what your guests came to see.</h1><p>One guide account. No visitor registration. Verify park entry, rank up to ten animals and receive relevant sightings. You decide where and how to drive.</p></header>
+  <ParkSession/>
+ </div>;
+}
