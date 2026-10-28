@@ -1,0 +1,7 @@
+import crypto from "crypto";import {NextRequest} from "next/server";import {sbFetch} from "./server-supabase";
+export const hash=(s:string)=>crypto.createHash("sha256").update(s).digest("hex");
+export const token=()=>crypto.randomBytes(32).toString("base64url");
+export const active=(o:any)=>o&&(o.subscription_status==="active"&&o.paid_through&&Date.parse(o.paid_through)>Date.now()||o.subscription_status==="trial"&&o.trial_ends_at&&Date.parse(o.trial_ends_at)>Date.now());
+export async function operator(req:NextRequest){const t=req.cookies.get("fr_operator_session")?.value;if(!t)return null;const r=await sbFetch("safari_operators?session_hash=eq."+hash(t)+"&session_expires_at=gt."+encodeURIComponent(new Date().toISOString())+"&select=*&limit=1");if(!r.ok)return null;return(await r.json())[0]||null}
+export async function guideAccess(req:NextRequest){const t=req.cookies.get("fr_guide_session")?.value;if(!t)return null;const r=await sbFetch("safari_operator_guides?session_hash=eq."+hash(t)+"&session_expires_at=gt."+encodeURIComponent(new Date().toISOString())+"&status=eq.active&select=id,guide_id,operator_id,active_vehicle_id,safari_operators(id,subscription_status,paid_through,trial_ends_at)&limit=1");if(!r.ok)return null;const a=(await r.json())[0];return a&&active(a.safari_operators)?a:null}
+export const cookie={httpOnly:true,secure:process.env.NODE_ENV==="production",sameSite:"lax" as const,path:"/",maxAge:60*60*12};
