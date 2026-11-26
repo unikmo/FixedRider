@@ -25,3 +25,31 @@
 /* Compact above-the-fold desktop hero; keep primary actions and sighting preview visible. */
 @media(min-width:1101px){.safariHero{min-height:0}.safariHero .nav{height:74px;gap:24px}.safariHero .brand{font-size:clamp(23px,1.8vw,28px);line-height:1.08;flex-shrink:0}.safariHero .navlinks{gap:clamp(12px,1.55vw,25px);min-width:0}.safariHero .navlinks a{font-size:clamp(12px,.92vw,14px);line-height:1.3;white-space:nowrap}.safariHero .navright .pill{padding:11px 19px;font-size:13px;white-space:nowrap}.safariHeroContent{padding:clamp(24px,4vh,45px) 0 36px;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);gap:clamp(24px,3vw,54px);align-items:center}.heroCopy h1{font-size:clamp(44px,4.2vw,64px);line-height:.99;letter-spacing:-2.5px;margin:13px 0 18px}.heroCopy>p{font-size:clamp(15px,1.15vw,17px);line-height:1.48;max-width:520px}.heroActions{margin-top:22px;gap:20px}.heroActions .pill{padding:12px 20px;font-size:14px}.trustRow{margin-top:28px;gap:12px}.intelPanel{padding:20px;border-radius:20px}.intelPanel h3{font-size:22px;margin:12px 0 16px}.sightingList{gap:8px}.sighting{padding:10px 12px;grid-template-columns:38px minmax(0,1fr) auto;gap:10px}.animalIcon{width:38px;height:38px}.sightingMain b{font-size:13px}.sightingMain span,.sightingMain small{font-size:11px}.slots strong{font-size:19px}.intelPanel .intelFoot{margin-top:10px}}
 @media(min-width:1101px) and (max-height:800px){.safariHeroContent{padding-top:20px;padding-bottom:24px}.heroCopy h1{font-size:clamp(42px,3.8vw,56px)}.heroCopy>p{font-size:15px;line-height:1.4}.trustRow{margin-top:20px}.intelPanel{padding:16px}.intelPanel h3{margin:9px 0 12px}.sighting{padding:8px 10px}.sightingList{gap:7px}}
+
+
+/* Image-led Safari homepage. Keep the product demonstration below the fold. */
+.safariHero:has(.safariHeroRefined){background:#102822;min-height:0}
+.safariHero:has(.safariHeroRefined)>.heroShade{display:none}
+.safariHeroRefined{display:flex;flex-direction:column;gap:0;align-items:stretch;padding:0 0 42px}
+.safariHeroRefined .heroWildlife{position:relative;isolation:isolate;overflow:hidden;aspect-ratio:2.5/1;background:#263d33;border-radius:12px}
+.wildlifeSlide{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity 1600ms ease-in-out;pointer-events:none}
+.wildlifeSlide.active{opacity:1}
+.wildlifeControls{position:absolute;right:18px;bottom:15px;z-index:2;display:flex;align-items:center;gap:3px;padding:4px 8px;background:rgba(12,26,22,.75);border-radius:24px}
+.wildlifeControls button{width:24px;height:36px;border:0;background:transparent;cursor:pointer;position:relative;color:white}
+.wildlifeControls button:not(.wildlifePause):after{content:"";position:absolute;left:8px;top:14px;width:8px;height:8px;border-radius:50%;background:#c9d1c9}
+.wildlifeControls button[aria-pressed=true]:after{background:#e9c76e}
+.wildlifeControls button:disabled{opacity:.35;cursor:default}
+.wildlifeControls .wildlifePause{width:auto;padding:0 9px;font-size:12px}
+.safariHeroRefined .heroCopy{padding:32px 0 0;max-width:800px}
+.safariHeroRefined .heroCopy h1{font-size:clamp(44px,5vw,76px);line-height:1.04;letter-spacing:-.045em;margin:10px 0 14px}
+.safariHeroRefined .heroCopy p{max-width:680px;margin:0;font-size:clamp(16px,1.3vw,19px);line-height:1.55}
+.safariHeroRefined .heroActions{margin-top:22px}
+.safariPreview{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:clamp(28px,6vw,90px);padding:76px 0}
+.safariPreview h2{font-family:var(--font-display),var(--font-sans),sans-serif;font-size:clamp(35px,4vw,54px);line-height:1.1;letter-spacing:-.04em;margin:12px 0}
+.safariPreview p{color:#596963;line-height:1.6;max-width:420px}
+.previewGuideLink{display:inline-flex;gap:8px;align-items:center;color:#214d40;font-weight:750;text-decoration:none;margin-top:12px}
+.safariPreview #safari{scroll-margin-top:24px}
+@media(min-width:1101px){.safariHeroRefined .heroWildlife{aspect-ratio:auto;height:clamp(320px,47vh,560px)}}
+@media(max-width:1000px){.safariPreview{grid-template-columns:1fr;padding:56px 0}.safariHeroRefined{padding-top:0}.safariHeroRefined .heroWildlife{aspect-ratio:16/9}}
+@media(max-width:680px){.safariHeroRefined .heroWildlife{aspect-ratio:4/3;border-radius:9px}.safariHeroRefined .heroCopy{padding-top:25px}.safariHeroRefined .heroCopy h1{font-size:clamp(42px,10vw,56px)}.safariHeroRefined .heroActions{flex-direction:row}.wildlifeControls{right:10px;bottom:10px}}
+@media(prefers-reduced-motion:reduce){.wildlifeSlide{transition:none}}
