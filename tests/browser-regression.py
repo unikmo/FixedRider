@@ -3,12 +3,13 @@ from playwright.sync_api import sync_playwright, expect
 base=os.environ.get("TEST_BASE_URL","http://localhost:3000").rstrip("/")
 with sync_playwright() as p:
     browser=p.chromium.launch()
-    page=browser.new_page(viewport={"width":1440,"height":900})
+    page=browser.new_page(viewport={"width":1440,"height":900},reduced_motion="no-preference")
     page.goto(base+"/",wait_until="domcontentloaded")
     expect(page.get_by_role("heading",name="Stop driving blind.")).to_be_visible()
     controls=page.locator(".wildlifeControls")
     expect(controls.locator("button:not(.wildlifePause)")).to_have_count(5)
     page.wait_for_function("Array.from(document.querySelectorAll('.wildlifeSlide')).length===5 && Array.from(document.querySelectorAll('.wildlifeSlide')).every(i=>i.complete && i.naturalWidth>0)",timeout=45000)
+    expect(controls.get_by_role("button",name="Rhino",exact=True)).to_be_enabled(timeout=15000)
     initial=controls.locator('button[aria-pressed="true"]').get_attribute("aria-label")
     page.wait_for_function("(initial)=>document.querySelector('.wildlifeControls button[aria-pressed=true]').getAttribute('aria-label')!==initial",arg=initial,timeout=6500)
     controls.get_by_role("button",name="Pause slideshow").click()
@@ -34,6 +35,8 @@ with sync_playwright() as p:
     page.route("**/api/contact",lambda r:r.fulfill(status=201,content_type="application/json",body='{"accepted":true}'))
     form.get_by_role("button",name="Send message").click()
     expect(page.locator(".contactSuccess")).to_be_visible()
+    assert page.evaluate("Math.abs(document.querySelector('.siteLegalFooter').getBoundingClientRect().bottom - innerHeight) <= 2"), "Footer moved after submission"
+    print("PASS contact success and footer position")
     page.unroute("**/api/contact")
     page.set_viewport_size({"width":390,"height":844})
     page.goto(base+"/",wait_until="domcontentloaded")
