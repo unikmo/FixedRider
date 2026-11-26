@@ -53,3 +53,24 @@
 @media(max-width:1000px){.safariPreview{grid-template-columns:1fr;padding:56px 0}.safariHeroRefined{padding-top:0}.safariHeroRefined .heroWildlife{aspect-ratio:16/9}}
 @media(max-width:680px){.safariHeroRefined .heroWildlife{aspect-ratio:4/3;border-radius:9px}.safariHeroRefined .heroCopy{padding-top:25px}.safariHeroRefined .heroCopy h1{font-size:clamp(42px,10vw,56px)}.safariHeroRefined .heroActions{flex-direction:row}.wildlifeControls{right:10px;bottom:10px}}
 @media(prefers-reduced-motion:reduce){.wildlifeSlide{transition:none}}
+
+
+/* Safari hero polish: balanced editorial layout, uncropped-feeling wildlife and fewer navigation links. */
+.safariHero .navlinks{justify-content:center;gap:clamp(20px,3vw,44px)}
+.safariHero .mobileOperatorLink{display:none}
+.safariHeroRefined{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(32px,5vw,76px);align-items:center;padding:30px 0 52px}
+.safariHeroRefined .heroWildlife{height:auto;aspect-ratio:4/3;min-height:0;border-radius:12px}
+.safariHeroRefined .heroCopy{padding:0;max-width:560px}
+.safariHeroRefined .heroCopy h1{font-size:clamp(44px,4.7vw,72px);line-height:1.04;margin:0 0 20px}
+.safariHeroRefined .heroActions{margin-top:26px}
+.wildlifeSlide{transition:opacity 950ms ease-in-out}
+.bigFiveGallery{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;margin:0 0 48px}
+.bigFiveGallery figure{margin:0;min-width:0}
+.bigFiveGallery img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;border-radius:10px}
+.bigFiveGallery figcaption{font-size:14px;font-weight:700;margin:10px 0 0}
+.parkCard:not(:has(.parkPhoto)){display:flex;flex-direction:column;justify-content:center}
+@media(max-width:1000px){.safariHeroRefined{grid-template-columns:1fr;gap:28px;padding:12px 0 38px}.safariHeroRefined .heroWildlife{aspect-ratio:16/10}.safariHero .navlinks.open{justify-content:flex-start;gap:18px}}
+@media(max-width:680px){.safariHero .navlinks.open .mobileOperatorLink{display:block;color:#e9c76e}.safariHeroRefined .heroWildlife{aspect-ratio:4/3}.safariHeroRefined .heroCopy h1{font-size:clamp(40px,10vw,54px);margin-bottom:14px}.bigFiveGallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;gap:12px}.bigFiveGallery figure{flex:0 0 42%;scroll-snap-align:start}}
+@media(prefers-reduced-motion:reduce){.wildlifeSlide{transition:none}}
+
+.wildlifeGalleryTitle{font-family:var(--font-display),var(--font-sans),sans-serif;font-size:clamp(25px,3vw,34px);font-weight:550;letter-spacing:-.03em;margin:28px 0 18px}.parkCard>.parkPhoto{padding:0}.parkCard:not(:has(.parkPhoto)) p{min-height:0}.safariHeroRefined .heroCopy{min-width:0}
