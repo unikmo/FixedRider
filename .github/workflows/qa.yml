@@ -2,6 +2,8 @@ name: FixedRider QA
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 jobs:
   build:
@@ -14,3 +16,9 @@ jobs:
       - run: npm install --package-lock-only --ignore-scripts
       - run: npm ci
       - run: npm run build
+      - name: Run local smoke and authorization regression
+        run: |
+          npm run start > /tmp/fixedrider.log 2>&1 &
+          trap 'kill $! 2>/dev/null || true' EXIT
+          for i in $(seq 1 40); do curl -fsS http://localhost:3000/ >/dev/null && break; sleep 2; done
+          node tests/production-smoke.mjs
