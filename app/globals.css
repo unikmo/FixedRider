@@ -72,3 +72,5 @@
 @media(max-width:1000px){.safariHeroRefined{grid-template-columns:1fr;gap:28px;padding:12px 0 38px}.safariHeroRefined .heroWildlife{aspect-ratio:16/10}.safariHero .navlinks.open{justify-content:flex-start;gap:18px}}
 @media(max-width:680px){.safariHero .navlinks.open .mobileOperatorLink{display:block;color:#e9c76e}.safariHeroRefined .heroWildlife{aspect-ratio:4/3}.safariHeroRefined .heroCopy h1{font-size:clamp(40px,10vw,54px);margin-bottom:14px}.bigFiveGallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;gap:12px}.bigFiveGallery figure{flex:0 0 42%;scroll-snap-align:start}}
 @media(prefers-reduced-motion:reduce){.wildlifeSlide{transition:none}}
+
+.wildlifeGalleryTitle{font-family:var(--font-display),var(--font-sans),sans-serif;font-size:clamp(25px,3vw,34px);font-weight:550;letter-spacing:-.03em;margin:28px 0 18px}.parkCard>.parkPhoto{padding:0}.parkCard:not(:has(.parkPhoto)) p{min-height:0}.safariHeroRefined .heroCopy{min-width:0}
