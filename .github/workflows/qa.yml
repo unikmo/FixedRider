@@ -16,9 +16,33 @@ jobs:
       - run: npm install --package-lock-only --ignore-scripts
       - run: npm ci
       - run: npm run build
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright
+      - run: python -m playwright install --with-deps chromium
       - name: Run local smoke and authorization regression
         run: |
           npm run start > /tmp/fixedrider.log 2>&1 &
           trap 'kill $! 2>/dev/null || true' EXIT
           for i in $(seq 1 40); do curl -fsS http://localhost:3000/ >/dev/null && break; sleep 2; done
           node tests/production-smoke.mjs
+          python -u tests/browser-regression.py
+  production:
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TEST_BASE_URL: https://thepopmoment.com
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright
+      - run: python -m playwright install --with-deps chromium
+      - run: node tests/production-smoke.mjs
+      - run: python -u tests/browser-regression.py
